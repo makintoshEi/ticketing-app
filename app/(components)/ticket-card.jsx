@@ -4,8 +4,8 @@ import ProgressBar from "./progress-bar";
 import StatusDisplay from "./status-display";
 
 const TicketCard = ({
-  category,
   description,
+  _id,
   priority,
   progress,
   status,
@@ -28,7 +28,7 @@ const TicketCard = ({
       <div className="flex mb-3">
         <PriorityDisplay priorityNumber={priority} />
         <div className="ml-auto">
-          <DeleteBlock />
+          <DeleteBlock id={_id} />
         </div>
       </div>
       <h4>{title}</h4>
