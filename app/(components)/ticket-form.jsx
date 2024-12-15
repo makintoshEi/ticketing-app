@@ -2,9 +2,10 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const TicketForm = () => {
+const TicketForm = (ticket) => {
   const router = useRouter();
-  const startingTicketData = {
+  let isNew = true;
+  let startingTicketData = {
     title: "",
     description: "",
     priority: 1,
@@ -12,6 +13,10 @@ const TicketForm = () => {
     status: "not started",
     category: "Hardware problem",
   };
+  if (ticket) {
+    isNew = false;
+    startingTicketData = { ...ticket };
+  }
   const [formData, setFormData] = useState(startingTicketData);
 
   const handleChange = (e) => {
@@ -26,13 +31,16 @@ const TicketForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("/api/tickets", {
-      method: "POST",
-      body: JSON.stringify(formData),
-    });
+    const res = await fetch(
+      isNew ? `/api/tickets` : `/api/tickets/${ticket._id}`,
+      {
+        method: isNew ? "POST" : "PUT",
+        body: JSON.stringify(formData),
+      }
+    );
 
     if (!res.ok) {
-      throw new Error("Failed to create ticket");
+      throw new Error("action Failed");
     }
 
     router.refresh();
@@ -46,7 +54,7 @@ const TicketForm = () => {
         method="post"
         onSubmit={handleSubmit}
       >
-        <h3>Create Your Ticket</h3>
+        <h3>{isNew ? "Create" : "Update"} Your Ticket</h3>
         <label htmlFor="title">Title: </label>
         <input
           type="text"
@@ -93,7 +101,11 @@ const TicketForm = () => {
           <option value="started">Started</option>
           <option value="done">Done</option>
         </select>
-        <input type="submit" className="btn" value="Create Ticket" />
+        <input
+          type="submit"
+          className="btn"
+          value={isNew ? "Create Ticket" : "Update Ticket"}
+        />
       </form>
     </div>
   );

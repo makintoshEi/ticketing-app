@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DeleteBlock from "./delete-block";
 import PriorityDisplay from "./priority-display";
 import ProgressBar from "./progress-bar";
@@ -31,19 +32,21 @@ const TicketCard = ({
           <DeleteBlock id={_id} />
         </div>
       </div>
-      <h4>{title}</h4>
-      <hr className="h-px border-0 bg-page mb-2" />
-      <p className="whitespace-pre-wrap">{description}</p>
-      <div className="flex-grow"></div>
-      <div className="flex mt-2">
-        <div className="flex- flex-col">
-          <p className="text-xs my-1">{formatTimestamp(createdAt)}</p>
-          <ProgressBar progress={progress} />
+      <Link href={`/ticket-page/${_id}`}>
+        <h4>{title}</h4>
+        <hr className="h-px border-0 bg-page mb-2" />
+        <p className="whitespace-pre-wrap">{description}</p>
+        <div className="flex-grow"></div>
+        <div className="flex mt-2">
+          <div className="flex- flex-col">
+            <p className="text-xs my-1">{formatTimestamp(createdAt)}</p>
+            <ProgressBar progress={progress} />
+          </div>
+          <div className="ml-auto flex items-end">
+            <StatusDisplay status={status} />
+          </div>
         </div>
-        <div className="ml-auto flex items-end">
-          <StatusDisplay status={status} />
-        </div>
-      </div>
+      </Link>
     </div>
   );
 };
