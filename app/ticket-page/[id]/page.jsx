@@ -1,9 +1,12 @@
-function TicketPage(inputs) {
-  console.log("inputs :", inputs);
-  const {
-    params: { id },
-  } = inputs;
-  return <div>TicketPage {id}</div>;
+import TicketForm from "@/app/(components)/ticket-form";
+
+function TicketPage({ params }) {
+  const { id } = params;
+  return (
+    <div>
+      <TicketForm></TicketForm>
+    </div>
+  );
 }
 
 export default TicketPage;
