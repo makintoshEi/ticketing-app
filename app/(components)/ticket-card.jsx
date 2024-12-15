@@ -3,11 +3,11 @@ import PriorityDisplay from "./priority-display";
 import ProgressBar from "./progress-bar";
 import StatusDisplay from "./status-display";
 
-const TicketCard = () => {
+const TicketCard = ({ priorityNumber }) => {
   return (
     <div className="flex flex-col bg-card hover:bg-card-hover rounded-md shadow-lg p-3 m-2">
       <div className="flex mb-3">
-        <PriorityDisplay />
+        <PriorityDisplay priorityNumber={priorityNumber} />
         <div className="ml-auto">
           <DeleteBlock />
         </div>
