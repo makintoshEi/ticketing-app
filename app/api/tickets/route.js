@@ -7,7 +7,15 @@ export async function POST(req) {
     await Ticket.create(body);
     return NextResponse.json({ message: "Ticket created" }, { status: 201 });
   } catch (error) {
-    console.log(error);
+    return NextResponse.json({ error: "Error" }, { status: 500 });
+  }
+}
+
+export async function GET() {
+  try {
+    const tickets = await Ticket.find();
+    return NextResponse.json({ data: tickets }, { status: 200 });
+  } catch (error) {
     return NextResponse.json({ error: "Error" }, { status: 500 });
   }
 }
