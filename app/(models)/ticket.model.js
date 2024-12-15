@@ -1,20 +1,21 @@
 import mongoose, { Schema } from "mongoose";
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(process.env.MONG_DB_URI);
 mongoose.Promise = global.Promise;
 
 const ticketSchema = new Schema(
   {
-    title: String,
+    category: String,
     description: String,
     priority: Number,
     progress: String,
     status: String,
-    active: Boolean,
+    title: String,
   },
   {
     timestamps: true,
   }
 );
 
-export const Ticket = mongoose.model("Ticket", ticketSchema);
+export const Ticket =
+  mongoose.models.tickets || mongoose.model("tickets", ticketSchema);
