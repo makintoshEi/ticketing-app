@@ -1,12 +1,5 @@
 import TicketCard from "./ticket-card";
-
-const getTickets = async () => {
-  const tickets = await fetch("http://localhost:3000/api/tickets", {
-    method: "GET",
-    cache: "no-store",
-  });
-  return tickets.json();
-};
+import { getTickets } from "@/app/(lib)/tickets";
 
 const Dashboard = async () => {
   const { data } = await getTickets();

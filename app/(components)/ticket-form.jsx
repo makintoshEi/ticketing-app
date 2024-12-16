@@ -2,9 +2,8 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
-const TicketForm = (ticket) => {
+const TicketForm = ({ ticket, isNewTicket }) => {
   const router = useRouter();
-  let isNew = true;
   let startingTicketData = {
     title: "",
     description: "",
@@ -13,8 +12,7 @@ const TicketForm = (ticket) => {
     status: "not started",
     category: "Hardware problem",
   };
-  if (ticket) {
-    isNew = false;
+  if (!isNewTicket) {
     startingTicketData = { ...ticket };
   }
   const [formData, setFormData] = useState(startingTicketData);
@@ -32,9 +30,9 @@ const TicketForm = (ticket) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await fetch(
-      isNew ? `/api/tickets` : `/api/tickets/${ticket._id}`,
+      isNewTicket ? `/api/tickets` : `/api/tickets/${ticket._id}`,
       {
-        method: isNew ? "POST" : "PUT",
+        method: isNewTicket ? "POST" : "PUT",
         body: JSON.stringify(formData),
       }
     );
@@ -54,7 +52,7 @@ const TicketForm = (ticket) => {
         method="post"
         onSubmit={handleSubmit}
       >
-        <h3>{isNew ? "Create" : "Update"} Your Ticket</h3>
+        <h3>{isNewTicket ? "Create" : "Update"} Your Ticket</h3>
         <label htmlFor="title">Title: </label>
         <input
           type="text"
@@ -72,7 +70,7 @@ const TicketForm = (ticket) => {
           rows={6}
         />
         <label htmlFor="category">Category</label>
-        <select name="category" id="category">
+        <select name="category" id="category" onChange={handleChange}>
           <option value="Hardware problem">Hardware problem</option>
           <option value="Software problem">Software problem</option>
           <option value="Other">Other</option>
@@ -104,7 +102,7 @@ const TicketForm = (ticket) => {
         <input
           type="submit"
           className="btn"
-          value={isNew ? "Create Ticket" : "Update Ticket"}
+          value={isNewTicket ? "Create Ticket" : "Update Ticket"}
         />
       </form>
     </div>
