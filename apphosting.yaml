@@ -13,7 +13,7 @@ env:
     availability:
       - BUILD
       - RUNTIME
-  - variable: ENVINRONMENT
+  - variable: ENVIRONMENT
     value: https://ticketing-app--ticketing-app-61ee3.us-central1.hosted.app
     availability:
       - BUILD
