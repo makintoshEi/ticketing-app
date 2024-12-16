@@ -1,9 +1,12 @@
+import { notFound } from "next/navigation";
 import TicketCard from "./ticket-card";
 import { getTickets } from "@/app/(lib)/tickets";
 
 const Dashboard = async () => {
   const { data } = await getTickets();
-
+  if (!data) {
+    return notFound();
+  }
   const uniqueCategories = Array.from(
     new Set(data.map((ticket) => ticket.category))
   );
