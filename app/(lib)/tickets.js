@@ -1,5 +1,5 @@
 const getTickets = async () => {
-  const tickets = await fetch("http://localhost:3000/api/tickets", {
+  const tickets = await fetch(`${process.env.ENVIRONMENT}/api/tickets`, {
     method: "GET",
     cache: "no-store",
   });
@@ -8,7 +8,7 @@ const getTickets = async () => {
 
 const getTicketById = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/tickets/${id}`, {
+    const res = await fetch(`${process.env.ENVIRONMENT}/api/tickets/${id}`, {
       method: "GET",
       cache: "no-cache",
     });
@@ -22,7 +22,7 @@ const getTicketById = async (id) => {
 };
 
 const deleteTicketById = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/tickets/${id}`, {
+  const res = await fetch(`${process.env.ENVIRONMENT}/api/tickets/${id}`, {
     method: "DELETE",
   });
   if (!res.ok) {
