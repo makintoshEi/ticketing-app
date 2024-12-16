@@ -9,7 +9,7 @@ runConfig:
 env:
   # Configure environment variables.
   - variable: MONG_DB_URI
-    secret: mongoDb
+    secret: MONG_DB_URI
     availability:
       - BUILD
       - RUNTIME
