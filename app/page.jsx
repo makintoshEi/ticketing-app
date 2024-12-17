@@ -1,10 +1,10 @@
-import Dashboard from "./(components)/dashboard";
+import { GoogleSignIn } from "./(components)/authentication";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 const Page = () => {
-  return <Dashboard />;
+  return <GoogleSignIn />;
 };
 
 export default Page;
