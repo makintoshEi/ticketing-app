@@ -1,6 +1,9 @@
+const domain = process.env.ENVIRONMENT;
+
 const getTickets = async () => {
   try {
-    const res = await fetch(`${process.env.ENVIRONMENT}/api/tickets`, {
+    console.log("Fetching tickets url...", domain);
+    const res = await fetch(`${domain}/api/tickets`, {
       method: "GET",
       cache: "no-store",
       headers: {
@@ -32,7 +35,7 @@ const getTickets = async () => {
 
 const getTicketById = async (id) => {
   try {
-    const res = await fetch(`${process.env.ENVIRONMENT}/api/tickets/${id}`, {
+    const res = await fetch(`${domain}/api/tickets/${id}`, {
       method: "GET",
       cache: "no-cache",
     });
@@ -46,7 +49,7 @@ const getTicketById = async (id) => {
 };
 
 const deleteTicketById = async (id) => {
-  const res = await fetch(`${process.env.ENVIRONMENT}/api/tickets/${id}`, {
+  const res = await fetch(`${domain}/api/tickets/${id}`, {
     method: "DELETE",
   });
   if (!res.ok) {
