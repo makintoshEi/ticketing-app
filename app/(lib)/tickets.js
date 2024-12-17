@@ -1,9 +1,33 @@
 const getTickets = async () => {
-  const tickets = await fetch(`${process.env.ENVIRONMENT}/api/tickets`, {
-    method: "GET",
-    cache: "no-store",
-  });
-  return tickets.json();
+  try {
+    const res = await fetch(`${process.env.ENVIRONMENT}/api/tickets`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    // Validate data structure
+    if (!data || !Array.isArray(data.data)) {
+      throw new Error("Invalid data structure");
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Failed to fetch tickets:", error);
+    // Return a structured error response
+    return {
+      data: [],
+      error: error.message,
+    };
+  }
 };
 
 const getTicketById = async (id) => {
