@@ -10,7 +10,6 @@ const getTickets = async () => {
         "Content-Type": "application/json",
       },
     });
-    console.log("Response:", res);
 
     const data = await res.json();
 
@@ -25,7 +24,7 @@ const getTickets = async () => {
     // Return a structured error response
     return {
       data: [],
-      error: "Error fetching tickets - Asael",
+      error: "Error fetching tickets!!",
     };
   }
 };
