@@ -1,1 +1,8 @@
-{}
+{
+  "hosting": {
+    "source": ".",
+    "frameworksBackend": {
+      "framework": "nextjs"
+    }
+  }
+}
