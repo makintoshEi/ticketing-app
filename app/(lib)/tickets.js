@@ -2,7 +2,7 @@ const domain = process.env.ENVIRONMENT;
 
 const getTickets = async () => {
   try {
-    console.log("Fetching tickets url...", domain);
+    console.log("Fetching tickets url...", `${domain}/api/tickets`);
     const res = await fetch(`${domain}/api/tickets`, {
       method: "GET",
       cache: "no-store",
@@ -10,10 +10,7 @@ const getTickets = async () => {
         "Content-Type": "application/json",
       },
     });
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+    console.log("Response:", res);
 
     const data = await res.json();
 
@@ -28,7 +25,7 @@ const getTickets = async () => {
     // Return a structured error response
     return {
       data: [],
-      error: error.message,
+      error: "Error fetching tickets - Asael",
     };
   }
 };
