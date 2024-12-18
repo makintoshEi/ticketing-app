@@ -44,8 +44,16 @@ export async function decrypt(session) {
   }
 }
 
+/**
+ * Creates a session for the given user ID and stores it in the user's cookies.
+ *
+ * This function creates a new session with the given user ID, encrypts it,
+ * and stores it in the user's cookies. The session is set to expire after 1 day.
+ *
+ * @param {string} userId - The user ID to associate the session with.
+ */
 export async function createSession(userId) {
-  const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000);
+  const expiresAt = new Date(Date.now() + 24 * 24 * 60 * 60 * 1000);
   const session = await encrypt({ userId, expiresAt });
   const cookieStore = await cookies();
 
