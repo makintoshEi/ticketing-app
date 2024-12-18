@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useAuth } from "@/app/(context)/auth-context";
 import { auth } from "@/app/(lib)/firebase";
 import { useRouter } from "next/navigation";
+import { faSignOut } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = () => {
   const user = useAuth();
@@ -38,9 +39,13 @@ const Navigation = () => {
           height={40}
           className="rounded-full"
         />
-        <p className="text-default-text space-x-4">{user.email}</p>
-        <button type="button" onClick={handleSignOut}>
-          <p className="text-default-text">Log out</p>
+        <p className="text-default-text space-x-4 p-2">{user.email}</p>
+        <button type="button" onClick={handleSignOut} title="Log out">
+          <FontAwesomeIcon
+            aria-label="Sign out"
+            icon={faSignOut}
+            title="Log out"
+          ></FontAwesomeIcon>
         </button>
       </div>
     </nav>
