@@ -7,7 +7,7 @@ import { useAuth } from "@/app/(context)/auth-context";
 
 const Navigation = () => {
   const user = useAuth();
-  return (
+  return user?.uid ? (
     <nav className="flex justify-between bg-nav p-4">
       <div className="flex items-center space-x-4">
         <Link href="/">
@@ -33,7 +33,7 @@ const Navigation = () => {
         <p className="text-default-text">{user.email}</p>
       </div>
     </nav>
-  );
+  ) : null;
 };
 
 export default Navigation;

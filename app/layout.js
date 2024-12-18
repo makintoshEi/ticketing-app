@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Navigation from "@/app/(components)/navigation";
 
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -14,7 +15,10 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <div className="flex flex-col h-screen max-h-screen">
           <div className="flex-grow overflow-y-auto bg-page text-default-text">
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <Navigation />
+              {children}
+            </AuthProvider>
           </div>
         </div>
       </body>

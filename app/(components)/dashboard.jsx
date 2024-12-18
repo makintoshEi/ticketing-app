@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import { getTickets } from "@/app/(lib)/tickets";
 import TicketCard from "./ticket-card";
-import Navigation from "./navigation";
 import UserMessages from "./user-messages";
 
 const DashboardContent = async () => {
@@ -41,14 +40,11 @@ const DashboardContent = async () => {
 
 const Dashboard = () => {
   return (
-    <>
-      <Navigation />
-      <Suspense
-        fallback={<UserMessages message="Loading tickets, please wait..." />}
-      >
-        <DashboardContent />
-      </Suspense>
-    </>
+    <Suspense
+      fallback={<UserMessages message="Loading tickets, please wait..." />}
+    >
+      <DashboardContent />
+    </Suspense>
   );
 };
 
