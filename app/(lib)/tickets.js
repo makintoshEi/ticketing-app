@@ -2,7 +2,6 @@ const domain = process.env.ENVIRONMENT;
 
 const getTickets = async () => {
   try {
-    console.log("Fetching tickets url...", `${domain}/api/tickets`);
     const res = await fetch(`${domain}/api/tickets`, {
       method: "GET",
       cache: "no-store",
