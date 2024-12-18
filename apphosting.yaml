@@ -12,3 +12,5 @@ env:
     secret: myApiSecret
   - variable: ENVIRONMENT
     secret: prod_env
+  - variable: SESSION_SECRET
+    secret: sessionSecret

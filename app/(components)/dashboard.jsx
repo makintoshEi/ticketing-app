@@ -1,18 +1,18 @@
 import { Suspense } from "react";
-import TicketCard from "./ticket-card";
 import { getTickets } from "@/app/(lib)/tickets";
+import TicketCard from "./ticket-card";
+import UserMessages from "./user-messages";
 
 const DashboardContent = async () => {
   const response = await getTickets();
 
   if (response.error) {
-    console.error("Tickets fetch error:", response.error);
-    return <div>Error loading tickets</div>;
+    return <UserMessages message="Error loading tickets" />;
   }
 
   const { data } = response;
   if (!data || data.length === 0) {
-    return <div>No tickets found</div>;
+    return <UserMessages message="No tickets found" />;
   }
 
   const uniqueCategories = Array.from(
@@ -40,7 +40,9 @@ const DashboardContent = async () => {
 
 const Dashboard = () => {
   return (
-    <Suspense fallback={<div>Loading tickets...</div>}>
+    <Suspense
+      fallback={<UserMessages message="Loading tickets, please wait..." />}
+    >
       <DashboardContent />
     </Suspense>
   );
