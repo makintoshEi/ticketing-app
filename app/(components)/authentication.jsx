@@ -10,6 +10,7 @@ export const GoogleSignIn = () => {
   const handleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
+      console.log(result.user);
       await fetch("/api/auth", {
         method: "POST",
         body: JSON.stringify({ userId: result.user.uid }),

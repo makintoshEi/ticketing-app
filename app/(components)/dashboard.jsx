@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import TicketCard from "./ticket-card";
 import { getTickets } from "@/app/(lib)/tickets";
+import Navigation from "./navigation";
 
 const DashboardContent = async () => {
   const response = await getTickets();
@@ -41,6 +42,7 @@ const DashboardContent = async () => {
 const Dashboard = () => {
   return (
     <Suspense fallback={<div>Loading tickets...</div>}>
+      <Navigation />
       <DashboardContent />
     </Suspense>
   );
