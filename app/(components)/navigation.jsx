@@ -36,16 +36,11 @@ const Navigation = () => {
           alt="Profile"
           width={40}
           height={40}
-          style={{
-            borderRadius: "border-radius: 9999px",
-            width: "2.5rem",
-            height: "2.5rem",
-          }}
-          className="w-10 h-10 rounded-full"
+          className="rounded-full"
         />
         <p className="text-default-text space-x-4">{user.email}</p>
         <button type="button" onClick={handleSignOut}>
-          Log out
+          <p className="text-default-text">Log out</p>
         </button>
       </div>
     </nav>
