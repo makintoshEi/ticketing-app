@@ -1,8 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from "../(lib)/firebase";
+import { auth, googleProvider, signInWithPopup } from "../(lib)/firebase";
 
 export const GoogleSignIn = () => {
   const router = useRouter();

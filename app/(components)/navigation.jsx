@@ -4,9 +4,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
 import { useAuth } from "@/app/(context)/auth-context";
+import { auth } from "@/app/(lib)/firebase";
+import { useRouter } from "next/navigation";
 
 const Navigation = () => {
   const user = useAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      router.push("/");
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return user?.uid ? (
     <nav className="flex justify-between bg-nav p-4">
       <div className="flex items-center space-x-4">
@@ -30,7 +43,10 @@ const Navigation = () => {
           }}
           className="w-10 h-10 rounded-full"
         />
-        <p className="text-default-text">{user.email}</p>
+        <p className="text-default-text space-x-4">{user.email}</p>
+        <button type="button" onClick={handleSignOut}>
+          Log out
+        </button>
       </div>
     </nav>
   ) : null;
