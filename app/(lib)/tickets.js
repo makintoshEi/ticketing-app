@@ -3,17 +3,15 @@ const baseUrl =
 
 const getTickets = async () => {
   try {
-    console.log(`serverless function .. ${baseUrl}/api/tickets`);
-    const res = await fetch(`${baseUrl}/api/tickets`, {
+    console.log(`serverless function .. ${baseUrl}/api/tickets/dashboard`);
+    const res = await fetch(`${baseUrl}/api/tickets/dashboard`, {
       method: "GET",
       cache: "no-store",
       headers: {
         "Content-Type": "application/json",
       },
     });
-    console.log("before");
     const data = await res.json();
-    console.log("log data", data);
 
     // Validate data structure
     if (!data || !Array.isArray(data.data)) {
