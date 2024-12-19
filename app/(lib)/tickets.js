@@ -1,7 +1,5 @@
 const baseUrl =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000"
-    : process.env.NEXT_PUBLIC_ENVIRONMENT;
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "";
 
 const getTickets = async () => {
   try {
