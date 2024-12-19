@@ -3,6 +3,7 @@ const baseUrl =
 
 const getTickets = async () => {
   try {
+    console.log("serverless function .. env: ", process.env.NODE_ENV);
     const res = await fetch(`${baseUrl}/api/tickets`, {
       method: "GET",
       cache: "no-store",
