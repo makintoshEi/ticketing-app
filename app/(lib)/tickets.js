@@ -1,8 +1,9 @@
-const domain = process.env.ENVIRONMENT;
+const baseUrl =
+  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "";
 
 const getTickets = async () => {
   try {
-    const res = await fetch(`${domain}/api/tickets`, {
+    const res = await fetch(`${baseUrl}/api/tickets`, {
       method: "GET",
       cache: "no-store",
       headers: {
@@ -30,7 +31,7 @@ const getTickets = async () => {
 
 const getTicketById = async (id) => {
   try {
-    const res = await fetch(`${domain}/api/tickets/${id}`, {
+    const res = await fetch(`${baseUrl}/api/tickets/${id}`, {
       method: "GET",
       cache: "no-cache",
     });
@@ -44,7 +45,7 @@ const getTicketById = async (id) => {
 };
 
 const deleteTicketById = async (id) => {
-  const res = await fetch(`${domain}/api/tickets/${id}`, {
+  const res = await fetch(`${baseUrl}/api/tickets/${id}`, {
     method: "DELETE",
   });
   if (!res.ok) {
