@@ -5,7 +5,7 @@ const baseUrl =
 
 const getTickets = async () => {
   try {
-    console.log("serverless function .. env: ", baseUrl);
+    console.log(`serverless function .. ${baseUrl}/api/tickets`);
     const res = await fetch(`${baseUrl}/api/tickets`, {
       method: "GET",
       cache: "no-store",
@@ -13,8 +13,9 @@ const getTickets = async () => {
         "Content-Type": "application/json",
       },
     });
-
+    console.log("before");
     const data = await res.json();
+    console.log("log data", data);
 
     // Validate data structure
     if (!data || !Array.isArray(data.data)) {
