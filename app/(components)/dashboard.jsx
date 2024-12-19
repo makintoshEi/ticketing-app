@@ -8,7 +8,7 @@ const DashboardContent = async () => {
   const response = await getTickets();
 
   if (response.error) {
-    return <UserMessages message="Error loading tickets" />;
+    return <UserMessages message={response.error} />;
   }
 
   const { data } = response;

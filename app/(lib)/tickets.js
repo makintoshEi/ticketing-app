@@ -1,9 +1,11 @@
 const baseUrl =
-  process.env.NODE_ENV === "development" ? "http://localhost:3000" : "";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000"
+    : process.env.NEXT_PUBLIC_ENVIRONMENT;
 
 const getTickets = async () => {
   try {
-    console.log("serverless function .. env: ", process.env.NODE_ENV);
+    console.log("serverless function .. env: ", baseUrl);
     const res = await fetch(`${baseUrl}/api/tickets`, {
       method: "GET",
       cache: "no-store",
@@ -21,11 +23,11 @@ const getTickets = async () => {
 
     return data;
   } catch (error) {
-    console.error("Failed to fetch tickets asael:", error);
+    console.error("Failed to fetch tickets:", error);
     // Return a structured error response
     return {
       data: [],
-      error: "Error fetching tickets Vercel !!",
+      error: "Error fetching tickets !",
     };
   }
 };
