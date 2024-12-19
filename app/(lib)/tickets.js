@@ -21,11 +21,11 @@ const getTickets = async () => {
 
     return data;
   } catch (error) {
-    console.error("Failed to fetch tickets:", error);
+    console.error("Failed to fetch tickets asael:", error);
     // Return a structured error response
     return {
       data: [],
-      error: "Error fetching tickets!!",
+      error: "Error fetching tickets Vercel !!",
     };
   }
 };
