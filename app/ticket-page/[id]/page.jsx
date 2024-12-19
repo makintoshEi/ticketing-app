@@ -7,7 +7,9 @@ const TicketPage = async ({ params }) => {
   let ticket = {};
 
   if (EDITMODE) {
+    console.log("edit mode id : ", id);
     const { data } = await getTicketById(id);
+    console.log("data : ", data);
     ticket = { ...data };
   }
   return <TicketForm isNewTicket={!EDITMODE} ticket={ticket}></TicketForm>;

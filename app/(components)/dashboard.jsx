@@ -4,6 +4,7 @@ import TicketCard from "./ticket-card";
 import UserMessages from "./user-messages";
 
 const DashboardContent = async () => {
+  console.log("dashboard content...");
   const response = await getTickets();
 
   if (response.error) {
